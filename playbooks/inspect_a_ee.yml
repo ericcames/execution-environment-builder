@@ -1,0 +1,17 @@
+---
+- name: Show python packages in an execution environment
+  hosts: all
+
+  tasks:
+
+    - name: Use ansible-navigator images command and ansible.builtin.expect to show python packages in an execution environment
+      register: python_packages
+      ansible.builtin.expect:
+        command: ansible-navigator images
+        responses:
+          - 7
+          - 3
+
+    - name: Print out python_packages
+      ansible.builtin.debug:
+        var: python_packages
